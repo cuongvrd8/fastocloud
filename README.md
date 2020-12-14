@@ -52,7 +52,7 @@ About FastoCloud
 
 ### Use cases:
 * Broadcast media content
-* Monetize Media content, own baranded apps
+* Monetize Media content, own branded apps
 * YouTube remove AD
 * Insert your logo to the stream, watermark
 * Record/Timeshift video

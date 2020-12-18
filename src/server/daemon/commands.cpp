@@ -48,7 +48,8 @@ common::Error StatisitcStreamBroadcast(const StatisticInfo& params, fastotv::pro
 }
 
 #if defined(MACHINE_LEARNING)
-common::Error MlNotificationStreamBroadcast(const fastotv::commands_info::ml::NotificationInfo& params, fastotv::protocol::request_t* req) {
+common::Error MlNotificationStreamBroadcast(const fastotv::commands_info::ml::NotificationInfo& params,
+                                            fastotv::protocol::request_t* req) {
   if (!req) {
     return common::make_error_inval();
   }

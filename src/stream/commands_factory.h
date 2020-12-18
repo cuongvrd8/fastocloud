@@ -30,7 +30,8 @@ common::Error ChangedSourcesStreamBroadcast(const ChangedSouresInfo& params, fas
 common::Error StatisticStreamBroadcast(const StatisticInfo& params, fastotv::protocol::request_t* req);
 
 #if defined(MACHINE_LEARNING)
-common::Error NotificationMlStreamBroadcast(const fastotv::commands_info::ml::NotificationInfo& params, fastotv::protocol::request_t* req);
+common::Error NotificationMlStreamBroadcast(const fastotv::commands_info::ml::NotificationInfo& params,
+                                            fastotv::protocol::request_t* req);
 #endif
 
 }  // namespace fastocloud

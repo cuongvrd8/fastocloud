@@ -10,7 +10,7 @@ USER=fastocloud
 # update system
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     if [ -n "$(command -v yum)" ]; then
-      yum update
+      yum update -y
       yum install -y git python3-setuptools python3-pip
     elif [ -n "$(command -v apt-get)" ]; then
       apt-get update

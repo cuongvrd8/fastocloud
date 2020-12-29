@@ -55,13 +55,13 @@ Element* make_audio_encoder(const std::string& codec, const std::string& name, b
     ElementFAAC* aac = new ElementFAAC(name);
     if (audiorate) {
       aac->SetRateControl(2);
-      aac->SetBitRate(*audiorate * 1024);
+      aac->SetBitRate(*audiorate);
     }
     return aac;
   } else if (codec == ElementVoaacEnc::GetPluginName()) {
     ElementVoaacEnc* aac = new ElementVoaacEnc(name);
     if (audiorate) {
-      aac->SetBitRate(*audiorate * 1024);
+      aac->SetBitRate(*audiorate);
     }
     return aac;
   } else if (codec == ElementMP3Enc::GetPluginName()) {

@@ -63,6 +63,7 @@ Element* setup_encoder_str_params(const video_encoders_str_args_t& video_str_arg
     size_t pos = key.find(".");
     std::string enc_name = key.substr(0, pos);
     if (enc_name != video_encoder) {
+      DEBUG_LOG() << "Skipped parametr: " << key << " value: " << it->second;
       continue;
     }
 
@@ -251,11 +252,11 @@ elements_line_t build_video_encoder(const std::string& codec,
 
   if (video_bitrate) {
     if (codec_element->GetPluginName() == ElementEAVCEnc::GetPluginName()) {
-      codec_element->SetProperty("bitrate-avg", *video_bitrate * 1024);
+      codec_element->SetProperty("bitrate-avg", *video_bitrate);
     } else {
       int bitrate = *video_bitrate;
       if (codec_element->GetPluginName() == ElementOpenH264Enc::GetPluginName()) {
-        bitrate *= 1024;
+        // bitrate *= 1024;
       } else if (codec_element->GetPluginName() == ElementNvH264Enc::GetPluginName()) {
         // bitrate *= 1024;
         codec_element->SetProperty("rc-mode", 2);  // constant

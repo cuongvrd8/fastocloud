@@ -86,6 +86,7 @@ Visit our site: [fastocloud.com](https://fastocloud.com)
 
 ### Realtime video analysis:
 ![](https://fastocloud.com/panel_pro/api/static/images/ml.png)
+![](https://fastocloud.com/panel_pro/api/static/images/nano.png)
 
 GStreamer Pipelines
 ==========

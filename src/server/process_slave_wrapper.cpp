@@ -1,4 +1,4 @@
-/*  Copyright (C) 2014-2020 FastoGT. All right reserved.
+/*  Copyright (C) 2014-2021 FastoGT. All right reserved.
     This file is part of fastocloud.
     fastocloud is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -736,16 +736,15 @@ common::ErrnoError ProcessSlaveWrapper::CreateChildStream(const serialized_strea
   return CreateChildStreamImpl(config_args, sha);
 }
 
-common::ErrnoError ProcessSlaveWrapper::StopChildStream(const serialized_stream_t& config_args) {
-  fastotv::stream_id_t sid = GetSid(config_args);
-  return StopChildStreamImpl(sid);
-}
-
-common::ErrnoError ProcessSlaveWrapper::StopChildStreamImpl(fastotv::stream_id_t sid) {
+common::ErrnoError ProcessSlaveWrapper::StopChildStreamImpl(fastotv::stream_id_t sid, bool force) {
   CHECK(loop_->IsLoopThread());
   Child* stream = FindChildByID(sid);
   if (!stream) {
     return common::make_errno_error(common::MemSPrintf("Stream with id: %s not exist, skip request.", sid), EINVAL);
+  }
+
+  if (force) {
+    return stream->Terminate();
   }
 
   return stream->Stop();
@@ -909,7 +908,7 @@ common::ErrnoError ProcessSlaveWrapper::HandleRequestClientStopStream(Protocoled
       return common::make_errno_error(err_str, EAGAIN);
     }
 
-    common::ErrnoError errn = StopChildStreamImpl(stop_info.GetStreamID());
+    common::ErrnoError errn = StopChildStreamImpl(stop_info.GetStreamID(), stop_info.GetForce());
     if (errn) {
       return dclient->StopFail(req->id, common::make_error_from_errno(errn));
     }

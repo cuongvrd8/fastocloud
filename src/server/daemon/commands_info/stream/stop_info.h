@@ -1,4 +1,4 @@
-/*  Copyright (C) 2014-2020 FastoGT. All right reserved.
+/*  Copyright (C) 2014-2021 FastoGT. All right reserved.
     This file is part of fastocloud.
     fastocloud is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,7 +24,16 @@ class StopInfo : public StreamInfo {
  public:
   typedef StreamInfo base_class;
   StopInfo();
-  explicit StopInfo(fastotv::stream_id_t stream_id);
+  explicit StopInfo(fastotv::stream_id_t stream_id, bool force);
+
+  bool GetForce() const;
+
+ protected:
+  common::Error DoDeSerialize(json_object* serialized) override;
+  common::Error SerializeFields(json_object* out) const override;
+
+ private:
+  bool force_;
 };
 
 }  // namespace stream

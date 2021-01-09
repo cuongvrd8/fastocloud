@@ -1,4 +1,4 @@
-/*  Copyright (C) 2014-2020 FastoGT. All right reserved.
+/*  Copyright (C) 2014-2021 FastoGT. All right reserved.
     This file is part of fastocloud.
     fastocloud is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -13,6 +13,8 @@
 */
 
 #include "server/child.h"
+
+#include <signal.h>
 
 #include <common/time.h>
 
@@ -58,6 +60,14 @@ common::ErrnoError Child::Restart() {
 
   fastotv::protocol::request_t req = RestartStreamRequest(NextRequestID());
   return client_->WriteRequest(req);
+}
+
+common::ErrnoError Child::Terminate() {
+  int result = kill(GetProcessID(), SIGTERM);
+  if (result != 0) {
+    return common::make_errno_error(errno);
+  }
+  return common::ErrnoError();
 }
 
 fastotv::protocol::sequance_id_t Child::NextRequestID() {

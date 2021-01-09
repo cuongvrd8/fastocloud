@@ -1,4 +1,4 @@
-/*  Copyright (C) 2014-2020 FastoGT. All right reserved.
+/*  Copyright (C) 2014-2021 FastoGT. All right reserved.
     This file is part of fastocloud.
     fastocloud is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -99,8 +99,7 @@ class ProcessSlaveWrapper : public common::libev::IoLoopObserver, public server:
   common::ErrnoError CreateChildStream(const serialized_stream_t& config_args) WARN_UNUSED_RESULT;
   common::ErrnoError CreateChildStreamImpl(const serialized_stream_t& config_args,
                                            const StreamInfo& sha) WARN_UNUSED_RESULT;
-  common::ErrnoError StopChildStream(const serialized_stream_t& config_args);
-  common::ErrnoError StopChildStreamImpl(fastotv::stream_id_t sid);
+  common::ErrnoError StopChildStreamImpl(fastotv::stream_id_t sid, bool force) WARN_UNUSED_RESULT;
 
   // stream
   common::ErrnoError HandleRequestChangedSourcesStream(stream_client_t* pclient,

@@ -1,4 +1,4 @@
-/*  Copyright (C) 2014-2020 FastoGT. All right reserved.
+/*  Copyright (C) 2014-2021 FastoGT. All right reserved.
     This file is part of fastocloud.
     fastocloud is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,6 +32,7 @@ class Child : public common::libev::IoChild {
 
   common::ErrnoError Stop() WARN_UNUSED_RESULT;
   common::ErrnoError Restart() WARN_UNUSED_RESULT;
+  common::ErrnoError Terminate() WARN_UNUSED_RESULT;
 
   client_t* GetClient() const;
   void SetClient(client_t* pipe);

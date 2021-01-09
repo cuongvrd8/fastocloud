@@ -1,4 +1,4 @@
-/*  Copyright (C) 2014-2020 FastoGT. All right reserved.
+/*  Copyright (C) 2014-2021 FastoGT. All right reserved.
     This file is part of fastocloud.
     fastocloud is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -14,6 +14,9 @@
 
 #include "stream/stream_wrapper.h"
 
+#include <unistd.h>
+
+#include <memory>
 #include <string>
 
 #include <common/file_system/string_path_utils.h>
@@ -24,6 +27,13 @@
 #include "stream/stream_controller.h"
 
 namespace {
+
+void on_signal(int signum) {
+  if (signum == SIGTERM) {
+    // ERROR_LOG() << "Force quit child!";
+    _exit(EXIT_SUCCESS);
+  }
+}
 
 const size_t kMaxSizeLogFile = 1024 * 1024;
 
@@ -40,6 +50,8 @@ int start_stream(const std::string& process_name,
                                  kMaxSizeLogFile);  // initialization of logging system
   }
   NOTICE_LOG() << "Running " PROJECT_VERSION_HUMAN;
+
+  signal(SIGTERM, on_signal);
 
   for (auto it = config_args->begin(); it != config_args->end(); ++it) {
     common::Value* val = it->second;

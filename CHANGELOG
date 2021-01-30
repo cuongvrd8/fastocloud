@@ -1,3 +1,7 @@
+1.2.4 / January 30, 2020
+[Alexandr Topilski]
+- PyFastoStream integration
+
 1.2.3 / January 16, 2020
 [Alexandr Topilski]
 - Kill stream command

@@ -21,8 +21,8 @@
 
 #include "base/config_fields.h"
 #include "base/gst_constants.h"
+#include "base/link_generator/ilink_generator.h"
 
-#include "stream/link_generator/ilink_generator.h"
 #include "stream/streams/configs/encode_config.h"
 #include "stream/streams/configs/relay_config.h"
 

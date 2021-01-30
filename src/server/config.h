@@ -41,7 +41,7 @@ struct Config {
   common::net::HostAndPort cods_host;
   time_t cods_ttl;  // in seconds
   time_t files_ttl;
-  std::string streamlink_path;
+  std::string pyfastostream_path;
   license_t license_key;
 };
 

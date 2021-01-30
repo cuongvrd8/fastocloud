@@ -19,7 +19,7 @@
 #define LOG_LEVEL_FIELD "log_level"
 #define ID_FIELD "id"      // required
 #define TYPE_FIELD "type"  // required
-#define STREAM_LINK_PATH_FIELD "stream_link_path"
+#define PYFASTOSTREAM_PATH_FIELD "pyfastostream_path"
 #define AUTO_EXIT_TIME_FIELD "auto_exit_time"
 
 #define INPUT_FIELD "input"  // required

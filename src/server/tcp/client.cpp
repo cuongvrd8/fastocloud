@@ -14,6 +14,8 @@
 
 #include "server/tcp/client.h"
 
+#include <memory>
+
 namespace fastocloud {
 namespace server {
 namespace tcp {

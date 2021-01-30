@@ -29,7 +29,7 @@
 #define SERVICE_CODS_HOST_FIELD "cods_host"
 #define SERVICE_CODS_TTL_FIELD "cods_ttl"
 #define SERVICE_FILES_TTL_FIELD "files_ttl"
-#define SERVICE_STREAMLINK_PATH_FIELD "streamlink_path"
+#define SERVICE_PYFASTOSTREAM_PATH_FIELD "pyfastostream_path"
 #define SERVICE_LICENSE_KEY_FIELD "license_key"
 
 #define DUMMY_LOG_FILE_PATH "/dev/null"
@@ -86,7 +86,7 @@ common::ErrnoError ReadConfigFile(const std::string& path, common::HashValue** a
       if (common::ConvertFromString(pair.second, &ttl)) {
         options->Insert(pair.first, common::Value::CreateTimeValue(ttl));
       }
-    } else if (pair.first == SERVICE_STREAMLINK_PATH_FIELD) {
+    } else if (pair.first == SERVICE_PYFASTOSTREAM_PATH_FIELD) {
       options->Insert(pair.first, common::Value::CreateStringValueFromBasicString(pair.second));
     } else if (pair.first == SERVICE_LICENSE_KEY_FIELD) {
       options->Insert(pair.first, common::Value::CreateStringValueFromBasicString(pair.second));
@@ -108,7 +108,7 @@ Config::Config()
       log_level(common::logging::LOG_LEVEL_INFO),
       cods_ttl(CODS_TTL),
       files_ttl(FILES_TTL),
-      streamlink_path(STREAMER_SERVICE_STREAMLINK_PATH),
+      pyfastostream_path(STREAMER_SERVICE_PYFASTOSTREAM_PATH),
       license_key() {}
 
 common::net::HostAndPort Config::GetDefaultHost() {
@@ -167,21 +167,21 @@ common::ErrnoError load_config_from_file(const std::string& config_absolute_path
   std::string http_host_str;
   if (!http_host_field || !http_host_field->GetAsBasicString(&http_host_str) ||
       !common::ConvertFromString(http_host_str, &lconfig.http_host)) {
-    lconfig.http_host = common::net::HostAndPort::CreateLocalHostIPV4(HTTP_PORT);
+    lconfig.http_host = common::net::HostAndPort::CreateDefaultRouteIPV4(HTTP_PORT);
   }
 
   common::Value* vods_host_field = slave_config_args->Find(SERVICE_VODS_HOST_FIELD);
   std::string vods_host_str;
   if (!vods_host_field || !vods_host_field->GetAsBasicString(&vods_host_str) ||
       !common::ConvertFromString(vods_host_str, &lconfig.vods_host)) {
-    lconfig.vods_host = common::net::HostAndPort::CreateLocalHostIPV4(VODS_PORT);
+    lconfig.vods_host = common::net::HostAndPort::CreateDefaultRouteIPV4(VODS_PORT);
   }
 
   common::Value* cods_host_field = slave_config_args->Find(SERVICE_CODS_HOST_FIELD);
   std::string cods_host_str;
   if (!cods_host_field || !cods_host_field->GetAsBasicString(&cods_host_str) ||
       !common::ConvertFromString(cods_host_str, &lconfig.cods_host)) {
-    lconfig.cods_host = common::net::HostAndPort::CreateLocalHostIPV4(CODS_PORT);
+    lconfig.cods_host = common::net::HostAndPort::CreateDefaultRouteIPV4(CODS_PORT);
   }
 
   common::Value* cods_ttl_field = slave_config_args->Find(SERVICE_CODS_TTL_FIELD);
@@ -194,9 +194,9 @@ common::ErrnoError load_config_from_file(const std::string& config_absolute_path
     lconfig.files_ttl = FILES_TTL;
   }
 
-  common::Value* streamlink_field = slave_config_args->Find(SERVICE_STREAMLINK_PATH_FIELD);
-  if (!streamlink_field || !streamlink_field->GetAsBasicString(&lconfig.streamlink_path)) {
-    lconfig.streamlink_path = STREAMER_SERVICE_STREAMLINK_PATH;
+  common::Value* PyFastoStream_field = slave_config_args->Find(SERVICE_PYFASTOSTREAM_PATH_FIELD);
+  if (!PyFastoStream_field || !PyFastoStream_field->GetAsBasicString(&lconfig.pyfastostream_path)) {
+    lconfig.pyfastostream_path = STREAMER_SERVICE_PYFASTOSTREAM_PATH;
   }
 
   *config = lconfig;

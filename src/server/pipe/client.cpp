@@ -14,6 +14,8 @@
 
 #include "server/pipe/client.h"
 
+#include <memory>
+
 namespace fastocloud {
 namespace server {
 namespace pipe {

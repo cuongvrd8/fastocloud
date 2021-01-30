@@ -31,7 +31,7 @@ class StartInfo : public common::serializer::JsonSerializer<StartInfo> {
   typedef common::serializer::JsonSerializer<StartInfo> base_class;
   typedef StreamConfig config_t;
   StartInfo();
-  StartInfo(const config_t& config);
+  explicit StartInfo(const config_t& config);
 
   config_t GetConfig() const;
 

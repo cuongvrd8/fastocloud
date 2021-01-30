@@ -357,15 +357,6 @@ SET(DUMPERS_SOURCES
   ${CMAKE_SOURCE_DIR}/src/stream/dumpers/idumper.cpp
 )
 
-SET(LINK_GENERATOR_HEADERS
-  ${CMAKE_SOURCE_DIR}/src/stream/link_generator/ilink_generator.h
-  ${CMAKE_SOURCE_DIR}/src/stream/link_generator/streamlink.h
-)
-SET(LINK_GENERATOR_SOURCES
-  ${CMAKE_SOURCE_DIR}/src/stream/link_generator/ilink_generator.cpp
-  ${CMAKE_SOURCE_DIR}/src/stream/link_generator/streamlink.cpp
-)
-
 FIND_PACKAGE(GLIB REQUIRED gobject)
 FIND_PACKAGE(Gstreamer 1.8.0 REQUIRED)
 FIND_PACKAGE(Cairo REQUIRED)
@@ -404,7 +395,6 @@ SET(CLIENT_SOURCES
   ${PAD_HEADERS} ${PAD_SOURCES}
   ${PLATFORM_HEADER} ${PLATFORM_SOURCES}
   ${DUMPERS_HEADERS} ${DUMPERS_SOURCES}
-  ${LINK_GENERATOR_HEADERS} ${LINK_GENERATOR_SOURCES}
 )
 
 SET(CLIENT_LIBRARIES

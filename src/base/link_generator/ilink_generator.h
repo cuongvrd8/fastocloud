@@ -17,7 +17,6 @@
 #include "base/input_uri.h"
 
 namespace fastocloud {
-namespace stream {
 namespace link_generator {
 
 class ILinkGenerator {
@@ -27,5 +26,4 @@ class ILinkGenerator {
 };
 
 }  // namespace link_generator
-}  // namespace stream
 }  // namespace fastocloud

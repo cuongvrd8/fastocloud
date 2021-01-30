@@ -14,7 +14,7 @@
 
 #include "server/daemon/commands_info/stream/stream_info.h"
 
-#define STREAM_INFO_ID_FIELD "id"
+#define ID_FIELD "id"
 
 namespace fastocloud {
 namespace server {
@@ -30,7 +30,7 @@ fastotv::stream_id_t StreamInfo::GetStreamID() const {
 
 common::Error StreamInfo::DoDeSerialize(json_object* serialized) {
   fastotv::stream_id_t sid;
-  common::Error err = GetStringField(serialized, STREAM_INFO_ID_FIELD, &sid);
+  common::Error err = GetStringField(serialized, ID_FIELD, &sid);
   if (err) {
     return err;
   }
@@ -40,7 +40,7 @@ common::Error StreamInfo::DoDeSerialize(json_object* serialized) {
 }
 
 common::Error StreamInfo::SerializeFields(json_object* out) const {
-  ignore_result(SetStringField(out, STREAM_INFO_ID_FIELD, stream_id_));
+  ignore_result(SetStringField(out, ID_FIELD, stream_id_));
   return common::Error();
 }
 

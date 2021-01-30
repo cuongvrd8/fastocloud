@@ -39,7 +39,7 @@ const size_t kMaxSizeLogFile = 1024 * 1024;
 
 int start_stream(const std::string& process_name,
                  const common::file_system::ascii_directory_string_path& feedback_dir,
-                 const common::file_system::ascii_file_string_path& streamlink_path,
+                 const common::file_system::ascii_file_string_path& pyfastostream_path,
                  common::logging::LOG_LEVEL logs_level,
                  const fastocloud::StreamConfig& config_args,
                  fastotv::protocol::protocol_client_t* command_client,
@@ -59,7 +59,7 @@ int start_stream(const std::string& process_name,
   }
 
   const std::unique_ptr<fastocloud::StreamStruct> mem(new fastocloud::StreamStruct(sha));
-  fastocloud::stream::StreamController proc(feedback_dir, streamlink_path, command_client, mem.get());
+  fastocloud::stream::StreamController proc(feedback_dir, pyfastostream_path, command_client, mem.get());
   common::Error err = proc.Init(config_args);
   if (err) {
     WARNING_LOG() << err->GetDescription();
@@ -97,14 +97,14 @@ int stream_exec(const char* process_name, const void* args, void* command_client
     return EXIT_FAILURE;
   }
 
-  std::string streamlink_path;
-  common::Value* streamlink_path_field = sargs->Find(STREAM_LINK_PATH_FIELD);
-  if (!streamlink_path_field || !streamlink_path_field->GetAsBasicString(&streamlink_path)) {
-    CRITICAL_LOG() << "Define streamlink path variable and make it valid";
+  std::string pyfastostream_path;
+  common::Value* PyFastoStream_path_field = sargs->Find(PYFASTOSTREAM_PATH_FIELD);
+  if (!PyFastoStream_path_field || !PyFastoStream_path_field->GetAsBasicString(&pyfastostream_path)) {
+    CRITICAL_LOG() << "Define pyfastostream path variable and make it valid";
     return EXIT_FAILURE;
   }
 
   fastotv::protocol::protocol_client_t* client = static_cast<fastotv::protocol::protocol_client_t*>(command_client);
   return start_stream(process_name, common::file_system::ascii_directory_string_path(feedback_dir),
-                      common::file_system::ascii_file_string_path(streamlink_path), logs_level, sargs, client, sha);
+                      common::file_system::ascii_file_string_path(pyfastostream_path), logs_level, sargs, client, sha);
 }

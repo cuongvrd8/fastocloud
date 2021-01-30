@@ -14,6 +14,8 @@
 
 #pragma once
 
+#include <string>
+
 #include <fastotv/commands_info/machine_info.h>
 
 namespace fastocloud {

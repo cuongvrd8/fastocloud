@@ -16,16 +16,15 @@
 
 #include <common/file_system/path.h>
 
-#include "stream/link_generator/ilink_generator.h"
+#include "base/link_generator/ilink_generator.h"
 
 namespace fastocloud {
-namespace stream {
 namespace link_generator {
 
-class StreamLinkGenerator : public ILinkGenerator {
+class PyFastoPyFastoStreamGenerator : public ILinkGenerator {
  public:
   typedef common::Optional<common::uri::GURL> http_proxy_t;
-  explicit StreamLinkGenerator(const common::file_system::ascii_file_string_path& script_path);
+  explicit PyFastoPyFastoStreamGenerator(const common::file_system::ascii_file_string_path& script_path);
 
   bool Generate(const InputUri& src, InputUri* out) const override WARN_UNUSED_RESULT;
 
@@ -34,5 +33,4 @@ class StreamLinkGenerator : public ILinkGenerator {
 };
 
 }  // namespace link_generator
-}  // namespace stream
 }  // namespace fastocloud

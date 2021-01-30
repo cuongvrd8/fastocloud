@@ -18,7 +18,6 @@
 
 #include "base/config_fields.h"
 
-#include "stream/link_generator/ilink_generator.h"
 #include "stream/streams/display/display_stream.h"
 #include "stream/streams/encoding/device_stream.h"
 #include "stream/streams/encoding/encoding_only_audio_stream.h"

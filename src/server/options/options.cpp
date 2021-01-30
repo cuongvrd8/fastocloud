@@ -447,7 +447,7 @@ bool FindOption(const std::string& key, option_t* opt) {
     {FEEDBACK_DIR_FIELD, validate_feedback_dir},
     {DATA_DIR_FIELD, validate_data_dir},
     {LOG_LEVEL_FIELD, validate_log_level},
-    {STREAM_LINK_PATH_FIELD, dont_validate},
+    {PYFASTOSTREAM_PATH_FIELD, dont_validate},
     {INPUT_FIELD, validate_input},
     {OUTPUT_FIELD, validate_output},
     {RESTART_ATTEMPTS_FIELD, validate_restart_attempts},

@@ -12,14 +12,12 @@
     along with fastocloud.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "stream/link_generator/ilink_generator.h"
+#include "base/link_generator/ilink_generator.h"
 
 namespace fastocloud {
-namespace stream {
 namespace link_generator {
 
 ILinkGenerator::~ILinkGenerator() {}
 
 }  // namespace link_generator
-}  // namespace stream
 }  // namespace fastocloud

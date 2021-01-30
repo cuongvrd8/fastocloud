@@ -19,11 +19,10 @@
 #include "base/stream_config.h"
 
 namespace fastocloud {
-namespace stream {
-
 namespace link_generator {
 class ILinkGenerator;
 }
+namespace stream {
 
 class Config;
 common::Error make_config(const StreamConfig& config_args, Config** config) WARN_UNUSED_RESULT;

@@ -14,6 +14,7 @@
 
 #include "server/process_slave_wrapper.h"
 
+#include <memory>
 #include <string>
 #include <thread>
 #include <utility>
@@ -732,7 +733,8 @@ common::ErrnoError ProcessSlaveWrapper::CreateChildStream(const serialized_strea
     return common::make_errno_error(common::MemSPrintf("Stream with id: %s exist, skip request.", sha.id), EEXIST);
   }
 
-  config_args->Insert(STREAM_LINK_PATH_FIELD, common::Value::CreateStringValueFromBasicString(config_.streamlink_path));
+  config_args->Insert(PYFASTOSTREAM_PATH_FIELD,
+                      common::Value::CreateStringValueFromBasicString(config_.pyfastostream_path));
   return CreateChildStreamImpl(config_args, sha);
 }
 

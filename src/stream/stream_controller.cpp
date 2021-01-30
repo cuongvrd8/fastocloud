@@ -14,6 +14,8 @@
 
 #include "stream/stream_controller.h"
 
+#include <memory>
+
 #if defined(OS_WIN)
 #include <processthreadsapi.h>
 #endif
@@ -26,10 +28,10 @@
 #include "base/config_fields.h"  // for ID_FIELD
 #include "base/constants.h"
 #include "base/gst_constants.h"
+#include "base/link_generator/pyfastostream.h"
 
 #include "stream/configs_factory.h"
 #include "stream/ibase_stream.h"
-#include "stream/link_generator/streamlink.h"
 #include "stream/probes.h"
 #include "stream/stream_server.h"
 #include "stream/streams/configs/relay_config.h"
@@ -70,12 +72,12 @@ TimeShiftInfo make_timeshift_info(const StreamConfig& config) {
 }  // namespace
 
 StreamController::StreamController(const common::file_system::ascii_directory_string_path& feedback_dir,
-                                   const common::file_system::ascii_file_string_path& streamlink_path,
+                                   const common::file_system::ascii_file_string_path& pyfastostream_path,
                                    fastotv::protocol::protocol_client_t* command_client,
                                    StreamStruct* mem)
     : IBaseStream::IStreamClient(),
       feedback_dir_(feedback_dir),
-      streamlink_path_(streamlink_path),
+      pyfastostream_path_(pyfastostream_path),
       config_(nullptr),
       timeshift_info_(),
       restart_attempts_(0),
@@ -141,7 +143,7 @@ StreamController::~StreamController() {
 }
 
 int StreamController::Exec() {
-  const link_generator::StreamLinkGenerator gena(streamlink_path_);
+  const fastocloud::link_generator::PyFastoPyFastoStreamGenerator gena(pyfastostream_path_);
   ev_thread_ = std::thread([this] {
     int res = loop_->Exec();
     UNUSED(res);
@@ -260,7 +262,7 @@ void StreamController::PreLooped(common::libev::IoLoop* loop) {
   UNUSED(loop);
   const auto ttl_sec = config_->GetTimeToLifeStream();
   if (ttl_sec && *ttl_sec) {
-    ttl_master_timer_ = loop_->CreateTimer(*ttl_sec, false);
+    ttl_master_timer_ = loop_->CreateTimer(*ttl_sec, true);
     NOTICE_LOG() << "Set stream ttl: " << *ttl_sec;
   }
 

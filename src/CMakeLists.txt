@@ -66,6 +66,15 @@ SET(STREAM_COMMANDS_INFO_SOURCES
   ${CMAKE_SOURCE_DIR}/src/stream_commands/commands_info/details/channel_stats_info.cpp
 )
 
+SET(LINK_GENERATOR_HEADERS
+  ${CMAKE_SOURCE_DIR}/src/base/link_generator/ilink_generator.h
+  ${CMAKE_SOURCE_DIR}/src/base/link_generator/pyfastostream.h
+)
+SET(LINK_GENERATOR_SOURCES
+  ${CMAKE_SOURCE_DIR}/src/base/link_generator/ilink_generator.cpp
+  ${CMAKE_SOURCE_DIR}/src/base/link_generator/pyfastostream.cpp
+)
+
 FIND_PACKAGE(Common REQUIRED)
 FIND_PACKAGE(FastoTvCPP REQUIRED)
 FIND_PACKAGE(JSON-C REQUIRED)
@@ -125,6 +134,7 @@ ADD_SUBDIRECTORY(utils)
 SET(STREAMER_COMMON_SOURCES
   ${STREAM_COMMANDS_INFO_HEADERS} ${STREAM_COMMANDS_INFO_SOURCES}
   ${BASE_HEADERS} ${BASE_SOURCES}
+  ${LINK_GENERATOR_HEADERS} ${LINK_GENERATOR_SOURCES}
 )
 SET(STREAMER_COMMON_LIBRARIES
   ${STREAMER_COMMON_LIBRARIES}

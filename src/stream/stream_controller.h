@@ -14,6 +14,7 @@
 
 #pragma once
 
+#include <memory>
 #include <string>
 #include <thread>
 #include <vector>
@@ -39,7 +40,7 @@ class StreamController : public common::libev::IoLoopObserver, public IBaseStrea
   enum constants : uint32_t { restart_after_frozen_sec = 60 };
 
   StreamController(const common::file_system::ascii_directory_string_path& feedback_dir,
-                   const common::file_system::ascii_file_string_path& streamlink_path,
+                   const common::file_system::ascii_file_string_path& pyfastostream_path,
                    fastotv::protocol::protocol_client_t* command_client,
                    StreamStruct* mem);
 
@@ -104,7 +105,7 @@ class StreamController : public common::libev::IoLoopObserver, public IBaseStrea
   void DumpStreamStatus(StreamStruct* stat);
 
   const common::file_system::ascii_directory_string_path feedback_dir_;
-  const common::file_system::ascii_file_string_path streamlink_path_;
+  const common::file_system::ascii_file_string_path pyfastostream_path_;
   const Config* config_;
   TimeShiftInfo timeshift_info_;
   size_t restart_attempts_;

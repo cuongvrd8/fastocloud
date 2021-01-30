@@ -33,7 +33,7 @@ class SyncInfo : public common::serializer::JsonSerializer<SyncInfo> {
   typedef std::vector<config_t> streams_t;
 
   SyncInfo();
-  SyncInfo(const streams_t& streams);
+  explicit SyncInfo(const streams_t& streams);
 
   streams_t GetStreams() const;
 

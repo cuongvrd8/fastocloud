@@ -127,3 +127,5 @@ Work with US
 [MEDIA presentation](https://fastogt.com/static/projects/fastocloud_for.pdf)
 
 [For RTMP broadcasters](https://pubsub.me)
+
+[Computer vision (Video parse)](https://yolodump.com)

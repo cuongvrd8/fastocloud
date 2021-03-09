@@ -21,6 +21,7 @@
 #include <common/license/expire_license.h>
 #include <common/value.h>
 
+#define SETTINGS_SECTION "[settings]"
 #define SERVICE_LOG_PATH_FIELD "log_path"
 #define SERVICE_LOG_LEVEL_FIELD "log_level"
 #define SERVICE_HOST_FIELD "host"
@@ -63,6 +64,10 @@ common::ErrnoError ReadConfigFile(const std::string& path, common::HashValue** a
   common::HashValue* options = new common::HashValue;
   std::string line;
   while (getline(config, line)) {
+    if (line == SETTINGS_SECTION) {
+      continue;
+    }
+
     const std::pair<std::string, std::string> pair = GetKeyValue(line, '=');
     if (pair.first == SERVICE_LOG_PATH_FIELD) {
       options->Insert(pair.first, common::Value::CreateStringValueFromBasicString(pair.second));

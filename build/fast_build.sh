@@ -36,7 +36,7 @@ fi
 git submodule update --init --recursive
 
 # install pyfastogt
-git clone https://github.com/fastogt/pyfastogt
+git clone https://gitlab.com/fastogt/pyfastogt
 cd pyfastogt
 python3 setup.py install
 cd ../

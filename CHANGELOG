@@ -1,12 +1,16 @@
-1.2.4 / January 30, 2020
+1.2.5 / March 13, 2021
+[Alexandr Topilski]
+- Ini section
+
+1.2.4 / January 30, 2021
 [Alexandr Topilski]
 - PyFastoStream integration
 
-1.2.3 / January 16, 2020
+1.2.3 / January 16, 2021
 [Alexandr Topilski]
 - Kill stream command
 
-1.2.2 / January 2, 2020
+1.2.2 / January 2, 2021
 [Alexandr Topilski]
 - Bitrates fixes
 
